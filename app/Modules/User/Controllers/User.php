@@ -67,21 +67,19 @@ class User extends BaseController
         return redirect()->to(base_url('user'));
     }
 
-    function update($id)
+    function update()
     {
-        $status = 0;
-
-        if ($this->request->getPost('status') == 'on') {
-            $status = 1;
-        }
+        $id = $this->request->getPost('id');
 
         $this->listModel->save([
             'pekerjaan_id' => ($id),
-            'pekerjaan_status' => $status,
+            'pekerjaan_status' => 1,
         ]);
+    }
 
-        session()->setFlashdata('pesan', 'Pekerjaan Berhasil diteruskan');
-
-        return redirect()->to(base_url('user'));
+    function hapus()
+    {
+        $id = $this->request->getPost('id');
+        $this->listModel->delete($id);
     }
 }
