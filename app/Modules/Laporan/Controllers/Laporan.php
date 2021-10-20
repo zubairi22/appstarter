@@ -74,8 +74,11 @@ class Laporan extends BaseController
     //     return redirect()->to(base_url('user'));
     // }
 
-    function update($id, $status)
+    function update()
     {
+
+        $id = $this->request->getPost('id');
+        $status = $this->request->getPost('st');
 
         $this->listModel->save([
             'pekerjaan_id' => $id,

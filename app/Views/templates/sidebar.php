@@ -1,7 +1,7 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?= base_url('dashboard') ?>">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?= base_url('home') ?>">
         <div class="sidebar-brand-icon">
             <i><img class="img-thumbnail bg-transparent border-0" width="40" height="80" src="<?= base_url('') ?>/assets/img/logo.png"></i>
         </div>
@@ -10,6 +10,12 @@
 
     <!-- Divider -->
     <hr class="sidebar-divider my-0">
+
+    <li class="nav-item <?= $title == 'Home' ? 'active' : ''; ?> ">
+        <a class="nav-link" href="<?= base_url('home') ?>">
+            <i class="fas fa-home"></i>
+            <span>Home</span></a>
+    </li>
 
     <?php if (session()->get('user_level_id') == 1) { ?>
         <!-- Nav Item - Dashboard -->

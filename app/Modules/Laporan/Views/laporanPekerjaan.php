@@ -33,27 +33,24 @@
                                         <td><?= $row['pekerjaan_tgl'] ?></td>
                                         <td>
                                             <?php if ($row['pekerjaan_setuju'] == 2) { ?>
-                                                <a href="#" class="btn btn-success btn-icon-split p-0 pl-3">
+                                                <a class="btn btn-success btn-icon-split p-0 pl-3">
                                                     <i class="fas fa-check"></i>
                                                     <span class="text">Disetujui</span>
                                                 </a>
                                             <?php
                                             } else if ($row['pekerjaan_setuju'] == 1) { ?>
-                                                <a href="#" class="btn btn-danger btn-icon-split p-0 pl-3">
+                                                <a class="btn btn-danger btn-icon-split p-0 pl-3">
                                                     <i class="fas fa-exclamation-triangle"></i>
-                                                    <span class="text">Ditolak
+                                                    <span class="text">Tertolak
                                                     </span>
                                                 </a>
                                             <?php
                                             } else { ?>
-                                                <a href="#" class="btn btn-primary btn-icon-split p-0 pl-3">
+                                                <a class="btn btn-primary btn-icon-split p-0 pl-3">
                                                     <i class="fas fa-arrow-right"></i>
                                                     <span class="text">Diproses</span>
                                                 </a>
                                             <?php } ?>
-                                            <a href="#" class="btn btn-info btn-circle <?= ($row['pekerjaan_setuju'] == 2 ? '' : 'disabled') ?>">
-                                                <i class="fas fa-archive"></i>
-                                            </a>
                                         </td>
                                     </tr>
                                       <?php

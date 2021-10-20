@@ -28,7 +28,7 @@
                                 <?= $validation->getError('tanggal'); ?>
                             </div>
                         </div>
-                        <button class="btn btn-primary d-block btn-user" type="submit">Tambah Pekerjaan</button>
+                        <button class="btn btn-primary btn-user" type="submit">Tambah</button>
                     </form>
                 </div>
             </div>
@@ -41,27 +41,30 @@
                         <div class="card-body p-3">
                             <?php if ($list != NULL) {
                                 foreach ($list as $l) { ?>
-                                    <form action="<?= base_url('user/update/' . $l['pekerjaan_id']) ?>" method="post" id="form">
-                                        <ul class="list-group list-group-flush">
-                                            <li class="list-group-item">
-                                                <div class="row align-items-center no-gutters">
-                                                    <div class="col me-2">
-                                                        <h6 class="mb-0"><strong><?= $l['pekerjaan_judul']; ?></strong></h6><span class="text-xs">Tanggal Mulai : <?= $l['pekerjaan_tgl']; ?></span>
-                                                    </div>
-                                                    <div class="col-auto">
-                                                        <div class="form-check">
-                                                            <input class="form-check-input" type="checkbox" name="status" id="status">
-                                                        </div>
-                                                    </div>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item">
+                                            <div class="row align-items-center no-gutters">
+                                                <div class="col me-2">
+                                                    <h6 class="mb-0"><strong><?= $l['pekerjaan_judul']; ?></strong></h6><span class="text-xs">Tanggal Mulai : <?= $l['pekerjaan_tgl']; ?></span>
                                                 </div>
-                                            </li>
-                                        </ul>
-                                        <hr class="sidebar-divider">
-                                    <?php  }
+                                                <div class="col-auto">
+                                                    <a href="#" class="btn btn-info btn-circle" onclick="teruskan('<?= $l['pekerjaan_id'] ?>');">
+                                                        <i class="fas fa-angle-double-right"></i>
+                                                    </a>
+                                                    <a href="#" class="btn btn-danger btn-circle" onclick="hapus('<?= $l['pekerjaan_id'] ?>');">
+                                                        <i class="fas fa-trash"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    <hr class="sidebar-divider">
+                                <?php  }
                             } else { ?>
-                                    <p>Kosong</p>
-                                <?php } ?>
-                                    </form>
+                                <div class="text-center">
+                                    <h5>Belum ada yang ditambahkan</h5>
+                                </div>
+                            <?php } ?>
                         </div>
                     </div>
                 </div>
@@ -71,13 +74,78 @@
 </div>
 
 <script>
-    $(document).ready(function() {
-        $('#status').change(function() {
-            if (this.checked == true) {
-                $('#form').submit();
+    function teruskan(id) {
+        var id = id;
+        Swal.fire({
+            title: 'Diteruskan',
+            icon: 'success',
+            showConfirmButton: false,
+            timer: 1500
+        }).then(() => {
+            $.ajax({
+                url: "<?= base_url('user/update'); ?>",
+                type: "POST",
+                data: {
+                    id: id
+                },
+                success: function(res) {
+                    location.reload();
+                },
+                error: function() {
+                    Swal.fire({
+                        title: 'Error',
+                        text: 'Gagal meneruskan',
+                        icon: 'warning',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                }
+            });
+        })
+    }
+
+    function hapus(id) {
+        var id = id;
+        Swal.fire({
+            title: 'Apakah Anda yakin?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Hapus Data'
+        }).then((result) => {
+            if (result.value) {
+                $.ajax({
+                    url: "<?= base_url('user/hapus'); ?>",
+                    type: "POST",
+                    data: {
+                        id: id
+                    },
+                    success: function(res) {
+                        Swal.fire({
+                                title: 'Data Pengguna',
+                                text: 'Berhasil dihapus',
+                                icon: 'success',
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                            .then(() => {
+                                location.reload();
+                            })
+                    },
+                    error: function() {
+                        Swal.fire({
+                            title: 'Error',
+                            text: 'Gagal menghapus data',
+                            icon: 'warning',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                    }
+                });
             }
-        });
-    });
+        })
+    }
 </script>
 
 <?= $this->endSection(); ?>

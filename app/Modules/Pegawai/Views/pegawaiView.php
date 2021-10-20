@@ -98,11 +98,11 @@
                         </div>
                         <div class="form-group col-md-4">
                             <label for="tanggal_lahir">Tanggal Lahir</label>
-                            <input type="date" class="form-control" name="tanggal_lahir" id="tanggal_lahir" value="<?= old('tanggal_lahir'); ?>">
+                            <input type="date" class="form-control <?= ($validation->hasError('tanggal_lahir')) ? 'is-invalid' : ''; ?>" name="tanggal_lahir" id="tanggal_lahir" value="<?= old('tanggal_lahir'); ?>">
                         </div>
                         <div class="form-group col-md-4">
                             <label for="agama">Agama</label>
-                            <select class="form-control" id="agama" name="agama">
+                            <select class="form-control <?= ($validation->hasError('agama')) ? 'is-invalid' : ''; ?>" id="agama" name="agama">
                                 <option value="">Pilih Agama</option>
                                 <?php foreach ($agama as $row) : ?>
                                     <option <?= old('agama') == $row ? 'selected' : ''; ?>>
@@ -115,7 +115,7 @@
                     <div class="form-row">
                         <div class="form-group col-md-3">
                             <label for="jk">Jenis Kelamin</label>
-                            <select class="form-control" id="jk" name="jk">
+                            <select class="form-control <?= ($validation->hasError('jk')) ? 'is-invalid' : ''; ?>" id="jk" name="jk">
                                 <option value="">Pilih Jenis Kelamin</option>
                                 <option <?= old('jk') == "L" ? 'selected' : ''; ?>>L</option>
                                 <option <?= old('jk') == "P" ? 'selected' : ''; ?>>P</option>
@@ -151,10 +151,7 @@
                     </div>
                     <div class="form-group">
                         <label for="alamat">Alamat</label>
-                        <input type="text" class="form-control <?= ($validation->hasError('alamat')) ? 'is-invalid' : ''; ?>" id="alamat" name="alamat" placeholder="Alamat Lengkap" value="<?= old('alamat'); ?>">
-                        <div class="invalid-feedback">
-                            <?= $validation->getError('alamat'); ?>
-                        </div>
+                        <input type="text" class="form-control" id="alamat" name="alamat" placeholder="Alamat Lengkap" value="<?= old('alamat'); ?>">
                     </div>
                 </div>
 
@@ -220,8 +217,8 @@
                             <label for="jk">Jenis Kelamin</label>
                             <select class="form-control" id="jk" name="jk" required>
                                 <option value="">Pilih Jenis Kelamin</option>
-                                <option <?= old('jk') == 'L' ? 'selected' : ''; ?> value="L">Laki-Laki</option>
-                                <option <?= old('jk') == 'P' ? 'selected' : ''; ?>value="P">Perempuan</option>
+                                <option <?= old('jk') == 'L' ? 'selected' : ''; ?>>L</option>
+                                <option <?= old('jk') == 'P' ? 'selected' : ''; ?>>P</option>
                             </select>
                         </div>
                         <div class="form-group col-md-4">

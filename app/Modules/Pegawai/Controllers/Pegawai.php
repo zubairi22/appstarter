@@ -49,10 +49,28 @@ class Pegawai extends BaseController
                     'required' => 'Nama Harus diisi',
                 ]
             ],
-            'pegawai_status' => [
+            'status' => [
                 'rules' => 'required',
                 'errors' => [
                     'required' => 'Pilih Status Pegawai',
+                ]
+            ],
+            'tempat_lahir' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Tempat lahir harus diisi',
+                ]
+            ],
+            'tanggal_lahir' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Pilih tanggal lahir',
+                ]
+            ],
+            'jk' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Pilih Jenis Kelamin',
                 ]
             ],
         ])) {

@@ -59,8 +59,8 @@
                                     <td><?= $row['pekerjaan_deskripsi'] ?></td>
                                     <td><?= $row['pekerjaan_tgl'] ?></td>
                                     <td>
-                                        <button class="btn btn-success" id="setuju" value="2" onclick="setuju(<?php echo $row['pekerjaan_id']; ?>)">Setuju</button>
-                                        <button class="btn btn-danger" id="tolak" value="1" onclick="tolak(<?php echo $row['pekerjaan_id']; ?>)">Tolak</button>
+                                        <button class="btn btn-success" id="setuju" onclick="setuju(<?= $row['pekerjaan_id']; ?>)">Setuju</button>
+                                        <button class="btn btn-danger" id="tolak" onclick="tolak(<?= $row['pekerjaan_id']; ?>)">Tolak</button>
                                     </td>
                                 </tr>
                                   <?php
@@ -100,9 +100,12 @@
 
     function setuju(id) {
         $.ajax({
-            url: "<?php echo base_url('laporan/update') ?>/" + id + "/" +
-                $('#setuju').val(),
+            url: "<?= base_url('laporan/update') ?>",
             type: "POST",
+            data: {
+                id: id,
+                st: 2
+            },
             success: function(data) {
                 location.reload();
             },
@@ -114,9 +117,12 @@
 
     function tolak(id) {
         $.ajax({
-            url: "<?php echo base_url('laporan/update') ?>/" + id + "/" +
-                $('#tolak').val(),
+            url: "<?= base_url('laporan/update/') ?>",
             type: "POST",
+            data: {
+                id: id,
+                st: 1
+            },
             success: function(data) {
                 location.reload();
             },

@@ -11,7 +11,7 @@ class AdminFilter implements FilterInterface
     public function before(RequestInterface $request, $arguments = null)
     {
         if (session()->get('user_level_id') != 1) {
-            return redirect()->to('/user');
+            return redirect()->to('home');
         }
     }
 

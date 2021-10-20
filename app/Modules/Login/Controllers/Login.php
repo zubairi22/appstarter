@@ -73,23 +73,20 @@ class Login extends BaseController
                     session()->set([
                         'user_level_id' => 1
                     ]);
-                    return redirect()->to(base_url('akun'));
                 } else if ($tabel['user_level_id'] == 2) {
                     session()->set([
                         'user_level_id' => 2
                     ]);
-                    return redirect()->to(base_url('user'));
                 } else if ($tabel['user_level_id'] == 3) {
                     session()->set([
                         'user_level_id' => 3
                     ]);
-                    return redirect()->to(base_url('user'));
                 } else {
                     session()->set([
                         'user_level_id' => 4,
                     ]);
-                    return redirect()->to(base_url('user'));
                 }
+                return redirect()->to(base_url('home'));
             } else {
                 session()->setFlashdata('pesan', 'Password Salah');
                 return redirect()->back()->withInput();
@@ -100,6 +97,6 @@ class Login extends BaseController
     public function logout()
     {
         session()->destroy();
-        return redirect()->to(base_url('Login'));
+        return redirect()->to(base_url('login'));
     }
 }

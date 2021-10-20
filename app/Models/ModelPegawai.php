@@ -8,7 +8,7 @@ class ModelPegawai extends Model
 {
     protected $table = 'pegawai';
     protected $primaryKey = 'pegawai_id';
-    protected $allowedFields = ['pegawai_id', 'pegawai_nama', 'pegawai_tempat_lahir', 'pegawai_tanggal_lahir', 'pegawai_kelamin', 'pegawai_agama', 'pegawai_email', 'pegawai_alamat', 'pegawai_foto'];
+    protected $allowedFields = ['pegawai_id', 'pegawai_nama', 'pegawai_status', 'pegawai_tempat_lahir', 'pegawai_tanggal_lahir', 'pegawai_kelamin', 'pegawai_agama', 'pegawai_email', 'pegawai_alamat', 'pegawai_foto'];
 
     public function getPegawaiStruktur($id_struktur, $id_user)
     {

@@ -20,6 +20,15 @@ class ModelListPekerjaan extends Model
             ->get()->getResultArray();
     }
 
+    public function getProses($id)
+    {
+        return $this
+            ->where('user_user_id', $id)
+            ->where('pekerjaan_status', 0)
+            ->orderBy('pekerjaan_tgl', 'asc')
+            ->get()->getResultArray();
+    }
+
     public function getListPekerjaan($id)
     {
         return $this

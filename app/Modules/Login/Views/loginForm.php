@@ -47,7 +47,7 @@
                                             </button>
                                         </div>
                                     <?php endif; ?>
-                                    <form class="user" action="<?= base_url('Login/prosesLogin') ?>" method="post">
+                                    <form class="user" action="<?= base_url('login/prosesLogin') ?>" method="post">
                                         <?= csrf_field(); ?>
                                         <div class="form-group">
                                             <input type="text" class="form-control form-control-user <?= ($validation->hasError('user_name')) ? 'is-invalid' : ''; ?>" id="user_name" name="user_name" placeholder="Masukkan NIP" autofocus value="<?= old('user_name'); ?>">

@@ -47,6 +47,12 @@ $routes->get('/', 'App\Controllers\Home::index');
  * needing to reload it.
  */
 
+$routes->group('home', ['filter' => 'user'], function ($routes) {
+	$routes->get('/', 'App\Modules\Home\Controllers\Home::index');
+	$routes->add('prosesLogin', 'App\Modules\Login\Controllers\Login::prosesLogin');
+	$routes->add('logout', 'App\Modules\Login\Controllers\Login::logout');
+});
+
 $routes->group('akun', ['filter' => 'admin'], function ($routes) {
 	$routes->get('/', 'App\Modules\Akun\Controllers\Akun::index');
 	$routes->add('tambah', 'App\Modules\Akun\Controllers\Akun::tambah');
@@ -68,8 +74,9 @@ $routes->group('user', function ($routes) {
 	$routes->get('/', 'App\Modules\User\Controllers\User::index');
 	$routes->get('tambah', 'App\Modules\User\Controllers\User::tambah');
 	$routes->add('prosesTambahPekerjaan', 'App\Modules\User\Controllers\User::prosesTambahPekerjaan');
-	$routes->add('update/(:num)', 'App\Modules\User\Controllers\User::update/$1');
+	$routes->add('update', 'App\Modules\User\Controllers\User::update');
 	$routes->add('profile', 'App\Modules\User\Controllers\User::profile');
+	$routes->add('hapus', 'App\Modules\User\Controllers\User::hapus');
 });
 
 $routes->group('laporan', ['filter' => 'user'], function ($routes) {
@@ -78,12 +85,18 @@ $routes->group('laporan', ['filter' => 'user'], function ($routes) {
 	$routes->add('update/(:num)/(:num)', 'App\Modules\Laporan\Controllers\Laporan::update/$1/$2');
 });
 
-$routes->get('profile', 'App\Modules\Profile\Controllers\Profile::index');
-$routes->add('profile/updateProfile/(:num)', 'App\Modules\Profile\Controllers\Profile::updateProfile/$1');
-$routes->add('profile/updateFoto/(:num)', 'App\Modules\Profile\Controllers\Profile::updateFoto/$1');
+$routes->group('profile', ['filter' => 'user'], function ($routes) {
+	$routes->get('/', 'App\Modules\Profile\Controllers\Profile::index');
+	$routes->add('updateProfile/(:num)', 'App\Modules\Profile\Controllers\Profile::updateProfile/$1');
+	$routes->add('updateFoto/(:num)', 'App\Modules\Profile\Controllers\Profile::updateFoto/$1');
+});
 
-$routes->get('Login', 'App\Modules\Login\Controllers\Login::index');
-$routes->add('Login/(:any)', 'App\Modules\Login\Controllers\Login::$1');
+$routes->group('login', function ($routes) {
+	$routes->get('/', 'App\Modules\Login\Controllers\Login::index');
+	$routes->add('index', 'App\Modules\Login\Controllers\Login::index');
+	$routes->add('prosesLogin', 'App\Modules\Login\Controllers\Login::prosesLogin');
+	$routes->add('logout', 'App\Modules\Login\Controllers\Login::logout');
+});
 
 if (file_exists(APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php')) {
 	require APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php';
