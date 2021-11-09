@@ -3,7 +3,7 @@
 namespace App\Modules\user\Controllers;
 
 use App\Controllers\BaseController;
-use App\Models\ModelListPekerjaan;
+use App\Models\ModelPekerjaan;
 use CodeIgniter\Modules\Modules;
 
 class User extends BaseController
@@ -12,14 +12,14 @@ class User extends BaseController
 
     public function __construct()
     {
-        $this->listModel = new ModelListPekerjaan();
+        $this->listModel = new ModelPekerjaan();
     }
 
     public function index()
     {
         $data = [
             'title' => 'Pekerjaan',
-            'list'  => $this->listModel->getListPekerjaan(session()->get('user_id')),
+            'list'  => $this->listModel->getListPekerjaan(session()->get('user_name')),
             'validation' => \Config\Services::validation()
         ];
 
@@ -59,7 +59,7 @@ class User extends BaseController
             'pekerjaan_tgl' => $this->request->getVar('tanggal'),
             'pekerjaan_status' => 0,
             'pekerjaan_setuju' => 0,
-            'user_user_id' => session()->get('user_id')
+            'pegawai_id' => session()->get('user_name')
         ]);
 
         session()->setFlashdata('pesan', 'Pekerjaan berhasil ditambah');

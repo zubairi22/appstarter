@@ -49,8 +49,6 @@ class Login extends BaseController
             'user_password' => $this->request->getPost('user_password'),
         ];
 
-
-
         $tabel = $this->model->where(['user_name' => $data['user_name']])->first();
         //dd($this->model->tes());
 
@@ -63,6 +61,7 @@ class Login extends BaseController
                     'user_name' => $data['user_name'],
                     'user_id' => $tabel['user_id'],
                     'jabatan' => $struktur['jabatan_status'],
+                    'jabatan_id' => $struktur['jabatan_id'],
                     'struktur_id' => $struktur['struktur_id'],
                     'struktur_parent' => $struktur['struktur_parent'],
                     'pegawai_foto' => $struktur['pegawai_foto'],

@@ -157,7 +157,8 @@ class Pegawai extends BaseController
 
     function hapus()
     {
-        $id = $this->request->getPost('id');
+        // $id = $this->request->getPost('id');
+        $id = "gfy2uegf823ygf";
         $this->pegawaiModel->delete($id);
     }
 }

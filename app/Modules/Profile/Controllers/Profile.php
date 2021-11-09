@@ -15,9 +15,12 @@ class Profile extends BaseController
 
     public function index()
     {
+        $agama = ['Islam', 'Kristen', 'Hindu', 'Buddha', 'Khonghucu'];
+
         $data = [
             'title' => 'Profile Pengguna',
             'pegawai'  => $this->model->where(['pegawai_id' => session()->get('user_name')])->first(),
+            'agama' => $agama,
             'validation' => \Config\Services::validation()
         ];
 
@@ -48,8 +51,7 @@ class Profile extends BaseController
     {
         if (!$this->validate([
             'file_upload' => [
-                'rules' => 'uploaded[file_upload]|mime_in[file_upload,image/jpg,image/jpeg,image/gif,image/png]|max_size[file_upload,4096]',
-
+                'rules' => 'uploaded[file_upload]|mime_in[file_upload,image/jpg,image/jpeg,image/gif,image/png,image/svg]|max_size[file_upload,4096]',
             ],
         ])) {
             session()->setFlashdata('error', 'Ada Kesalahan');
@@ -57,7 +59,7 @@ class Profile extends BaseController
         }
 
         $avatar = $this->request->getFile('file_upload');
-        $avatar->move(ROOTPATH . 'public/assets/img');
+        $avatar->move(ROOTPATH . 'public/assets/img/foto/');
 
         $this->model->save([
             'pegawai_id' => ($id),

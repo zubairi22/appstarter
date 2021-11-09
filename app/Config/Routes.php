@@ -82,7 +82,14 @@ $routes->group('user', function ($routes) {
 $routes->group('laporan', ['filter' => 'user'], function ($routes) {
 	$routes->get('/', 'App\Modules\Laporan\Controllers\Laporan::index');
 	$routes->get('laporanPegawai', 'App\Modules\Laporan\Controllers\Laporan::laporanPegawai');
-	$routes->add('update/(:num)/(:num)', 'App\Modules\Laporan\Controllers\Laporan::update/$1/$2');
+	$routes->add('update', 'App\Modules\Laporan\Controllers\Laporan::update');
+	$routes->add('setuju', 'App\Modules\Laporan\Controllers\Laporan::setuju');
+});
+
+$routes->group('nilai', ['filter' => 'user'], function ($routes) {
+	$routes->get('/', 'App\Modules\Nilai\Controllers\Nilai::index');
+	$routes->add('updateProfile/(:num)', 'App\Modules\Profile\Controllers\Profile::updateProfile/$1');
+	$routes->add('updateFoto/(:num)', 'App\Modules\Profile\Controllers\Profile::updateFoto/$1');
 });
 
 $routes->group('profile', ['filter' => 'user'], function ($routes) {

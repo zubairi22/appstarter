@@ -5,7 +5,7 @@
         <div class="sidebar-brand-icon">
             <i><img class="img-thumbnail bg-transparent border-0" width="40" height="80" src="<?= base_url('') ?>/assets/img/logo.png"></i>
         </div>
-        <div class="sidebar-brand-text">E-Kinerja</div>
+        <div class="sidebar-brand-text">&nbsp;E-Kinerja</div>
     </a>
 
     <!-- Divider -->
@@ -14,7 +14,7 @@
     <li class="nav-item <?= $title == 'Home' ? 'active' : ''; ?> ">
         <a class="nav-link" href="<?= base_url('home') ?>">
             <i class="fas fa-home"></i>
-            <span>Home</span></a>
+            <span>&nbsp;Home</span></a>
     </li>
 
     <?php if (session()->get('user_level_id') == 1) { ?>
@@ -37,7 +37,7 @@
         <li class="nav-item <?= $title == 'Pekerjaan' ? 'active' : ''; ?>">
             <a class="nav-link " href="<?= base_url('user') ?>">
                 <i class="fas fa-briefcase"></i>
-                <span>Pekerjaan</span>
+                <span>&nbsp;Pekerjaan</span>
             </a>
         </li>
 
@@ -58,6 +58,12 @@
             </a>
         </li>
     <?php } ?>
+
+    <li class="nav-item <?= $title == 'Laporan Kinerja' ? 'active' : ''; ?> ">
+        <a class="nav-link" href="<?= base_url('nilai') ?>">
+            <i class="fas fa-file-pdf"></i>
+            <span>&nbsp;&nbsp;Laporan Kinerja</span></a>
+    </li>
 
 
     <!-- Divider -->

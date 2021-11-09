@@ -9,12 +9,13 @@
                 <div class="col-lg-4">
                     <div class="card mb-3">
                         <form method="post" action="<?= base_url('profile/updateFoto/' . $pegawai['pegawai_id']) ?>" enctype="multipart/form-data">
-                            <div class="card-body text-center shadow">
-                                <img class="rounded-circle mb-3 mt-4" src=" <?= base_url('/assets/img/' . $pegawai['pegawai_foto']) ?>" width="160" height="160">
-                                <div class="mb-3">
-                                    <input class="form-control-file" type="file" name="file_upload" required="" class="form-control" multiple="">
+                            <div class="card-body text-center">
+                                <img class="rounded-circle mb-3 mt-4" src=" <?= base_url('/assets/img/foto/' . $pegawai['pegawai_foto']) ?>" width="160" height="160">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="file_upload" name="file_upload" accept="image/*">
+                                    <label class="custom-file-label" for="file">Pilih File..</label>
                                 </div>
-                                <div class="mb-3">
+                                <div class="mb-3 p-3">
                                     <button class="btn btn-primary btn-sm" type="submit">Ganti Foto</button>
                                 </div>
                             </div>
@@ -22,12 +23,11 @@
                     </div>
                 </div>
                 <div class="col-lg-8">
-
                     <div class="row">
                         <div class="col">
-                            <div class="card shadow">
+                            <div class="card">
                                 <div class="card-header py-3">
-                                    <p class="text-primary m-0 fw-bold">Data Diri</p>
+                                    <h6 class="text-dark m-0 fw-bold">Data Diri</h6>
                                 </div>
                                 <div class="card-body">
                                     <form action="<?= base_url('profile/updateProfile/' . $pegawai['pegawai_id']) ?>" method="post">
@@ -45,10 +45,8 @@
                                             <input class="form-control form-control-user " type="text" id="pegawai_tempat_lahir" aria-describedby="userHelp" name="pegawai_tempat_lahir" value="<?= $pegawai['pegawai_tempat_lahir']; ?>">
                                         </div>
                                         <div class="mb-3">
-                                            <div>
-                                                <label>Tanggal lahir : </label>
-                                            </div>
-                                            <input type="date" name="pegawai_tanggal_lahir" id="pegawai_tanggal_lahir" value="<?php echo date('Y-m-d', strtotime($pegawai['pegawai_tanggal_lahir'])); ?>">
+                                            <label for="tanggal_lahir">Tanggal Lahir</label>
+                                            <input type="date" class="form-control" name="tanggal_lahir" id="tanggal_lahir" value="<?= $pegawai['pegawai_tanggal_lahir']; ?>">
                                         </div>
                                         <div class="mb-3">
                                             <label>Jenis Kelamin : </label>
@@ -58,8 +56,15 @@
                                             </select>
                                         </div>
                                         <div class="mb-3">
-                                            <label>Agama : </label>
-                                            <input class="form-control form-control-user " type="text" id="pegawai_agama" aria-describedby="userHelp" name="pegawai_agama" value="<?= $pegawai['pegawai_agama']; ?>">
+                                            <label for="agama">Agama</label>
+                                            <select class="form-control" id="agama" name="agama">
+                                                <option value="">Pilih Agama</option>
+                                                <?php foreach ($agama as $row) : ?>
+                                                    <option <?= $pegawai['pegawai_agama'] == $row ? 'selected' : ''; ?>>
+                                                        <?= $row; ?>
+                                                    </option>
+                                                <?php endforeach; ?>
+                                            </select>
                                         </div>
                                         <div class="mb-3">
                                             <label>E-mail : </label>
@@ -69,7 +74,7 @@
                                             <label>Alamat : </label>
                                             <textarea class="form-control" id="pegawai_alamat" aria-describedby="userHelp" name="pegawai_alamat"><?= $pegawai['pegawai_alamat']; ?></textarea>
                                         </div>
-                                        <button class="btn btn-primary d-block btn-user w-100" type="submit">Ubah Data</button>
+                                        <button class="btn btn-primary d-block btn-user " type="submit">Ubah Data</button>
                                     </form>
                                 </div>
                             </div>

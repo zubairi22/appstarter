@@ -34,4 +34,14 @@ class ModelAkun extends Model
             ->join('struktur AS e', 'd.struktur_id = e.struktur_id')
             ->get()->getResultArray();
     }
+
+    public function tes2()
+    {
+        return $this->db->table('pegawai as b')
+            ->select('b.pegawai_nama,c.pegawai_jabatan_id,d.jabatan_id, d.jabatan_nama,d.jabatan_status, e.struktur_id,e.struktur_nama,e.struktur_parent')
+            ->join('pegawai_jabatan AS c', 'b.pegawai_id = c.pegawai_id', 'left')
+            ->join('jabatan AS d', 'c.jabatan_id = d.jabatan_id', 'left')
+            ->join('struktur AS e', 'd.struktur_id = e.struktur_id')
+            ->get()->getResultArray();
+    }
 }

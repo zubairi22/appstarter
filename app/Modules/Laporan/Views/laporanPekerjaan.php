@@ -32,14 +32,20 @@
                                         <td><?= $row['pekerjaan_deskripsi'] ?></td>
                                         <td><?= $row['pekerjaan_tgl'] ?></td>
                                         <td>
-                                            <?php if ($row['pekerjaan_setuju'] == 2) { ?>
+                                            <?php if ($row['pekerjaan_setuju'] == 3) { ?>
                                                 <a class="btn btn-success btn-icon-split p-0 pl-3">
-                                                    <i class="fas fa-check"></i>
+                                                    <i class="fas fa-check-double"></i>
                                                     <span class="text">Disetujui</span>
                                                 </a>
                                             <?php
+                                            } else if ($row['pekerjaan_setuju'] == 2) { ?>
+                                                <a class="btn btn-success btn-icon-split p-0 pl-3" onclick="catatan('<?= $row['catatan'] ?>')">
+                                                    <i class="fas fa-check"></i>
+                                                    <span class="text">Disetujui dengan Catatan</span>
+                                                </a>
+                                            <?php
                                             } else if ($row['pekerjaan_setuju'] == 1) { ?>
-                                                <a class="btn btn-danger btn-icon-split p-0 pl-3">
+                                                <a class="btn btn-danger btn-icon-split p-0 pl-3" onclick="catatan('<?= $row['catatan'] ?>')">
                                                     <i class="fas fa-exclamation-triangle"></i>
                                                     <span class="text">Tertolak
                                                     </span>
@@ -88,6 +94,16 @@
             ]
         });
     });
+
+    function catatan(ct) {
+        if (ct == "") {
+            ct = 'Tidak ada catatan yang diberikan'
+        }
+        Swal.fire({
+            title: 'Catatan',
+            text: ct,
+        })
+    }
 </script>
 
 <?= $this->endSection(); ?>

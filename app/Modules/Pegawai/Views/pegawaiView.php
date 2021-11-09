@@ -153,6 +153,7 @@
                         <label for="alamat">Alamat</label>
                         <input type="text" class="form-control" id="alamat" name="alamat" placeholder="Alamat Lengkap" value="<?= old('alamat'); ?>">
                     </div>
+                    <input type="file" class="form-control" name="asd">
                 </div>
 
                 <div class="modal-footer">
@@ -404,7 +405,8 @@
                                 location.reload();
                             })
                     },
-                    error: function() {
+                    error: function(e) {
+                        console.log(e.response)
                         Swal.fire({
                             title: 'Error',
                             text: 'Gagal menghapus data',

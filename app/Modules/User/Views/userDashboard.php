@@ -5,7 +5,7 @@
     <h3 class="text-dark mb-4"><?= $title; ?></h3>
     <div class="row mb-3">
         <div class="col-lg-5">
-            <div class="card shadow mb-4">
+            <div class="card mb-4">
                 <h6 class="card-header">Tambah Pekerjaan</h6>
                 <div class="card-body">
                     <form action="<?= base_url('user/prosesTambahPekerjaan') ?>" method="post">
@@ -36,7 +36,7 @@
         <div class="col-lg-7">
             <div class="row">
                 <div class="col">
-                    <div class="card shadow">
+                    <div class="card">
                         <h6 class="card-header">List Pekerjaan</h6>
                         <div class="card-body p-3">
                             <?php if ($list != NULL) {
@@ -77,7 +77,7 @@
     function teruskan(id) {
         var id = id;
         Swal.fire({
-            title: 'Diteruskan',
+            title: 'Diteruskan ke Atasan',
             icon: 'success',
             showConfirmButton: false,
             timer: 1500
@@ -123,7 +123,7 @@
                     },
                     success: function(res) {
                         Swal.fire({
-                                title: 'Data Pengguna',
+                                title: 'Pekerjaan',
                                 text: 'Berhasil dihapus',
                                 icon: 'success',
                                 showConfirmButton: false,
